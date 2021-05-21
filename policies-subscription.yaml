@@ -8,7 +8,7 @@ metadata:
   name: policies-subscription
   namespace: policies
 spec:
-  channel: acm-playground-channel
+  channel: acm-playground-channel/acm-playground-channel
   placement:
     local: true #only deploy on the ACM hub cluster
   
