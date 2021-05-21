@@ -46,7 +46,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-rolebinding
+- name: app-dev-role-binding
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---

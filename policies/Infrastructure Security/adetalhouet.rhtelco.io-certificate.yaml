@@ -24,3 +24,30 @@ spec:
           remediationAction: inform
           severity: low
   remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-certificate
+  namespace: policies
+placementRef:
+  name: placement-policy-certificate
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: adetalhouet.rhtelco.io-certificate
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-certificate
+  namespace: policies
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - {key: cloud, operator: In, values: ["Amazon"]}

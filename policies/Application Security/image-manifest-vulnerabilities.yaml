@@ -60,7 +60,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-imagemanifestvulnpolicy
+- name: image-manifest-vulnerabilities
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---

@@ -50,7 +50,7 @@ metadata:
   name: binding-policy-role
   namespace: policies
 placementRef:
-  name: placement-policy-role
+  name: app-dev-role
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:

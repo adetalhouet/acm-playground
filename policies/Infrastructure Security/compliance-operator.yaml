@@ -73,7 +73,7 @@ metadata:
   name: binding-policy-comp-operator
   namespace: policies
 placementRef:
-  name: placement-policy-comp-operator
+  name: compliance-operator
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:

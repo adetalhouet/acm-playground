@@ -37,7 +37,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-limitclusteradmin
+- name: limit-cluster-admin
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---

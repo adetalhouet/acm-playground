@@ -47,7 +47,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-limit-range
+- name: limit-memory-range
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---

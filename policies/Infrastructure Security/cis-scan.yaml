@@ -74,3 +74,30 @@ spec:
           remediationAction: enforce
           severity: high
   remediationAction: enforce
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-cis-scan
+  namespace: policies
+placementRef:
+  name: placement-policy-cis-scan
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: cis-scan
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-cis-scan
+  namespace: policies
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - {key: cloud, operator: In, values: ["Amazon"]}
