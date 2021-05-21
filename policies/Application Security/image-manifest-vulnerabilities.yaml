@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: image-manifest-vuln
+  name: image-manifest-vulnerabilities
   namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: Application security
