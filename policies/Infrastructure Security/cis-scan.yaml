@@ -1,0 +1,76 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: cis-scan
+  namespace: policies
+  annotations:
+    policy.open-cluster-management.io/standards: Infrastructure security
+    policy.open-cluster-management.io/categories: Configuration Management
+    policy.open-cluster-management.io/controls: CM-6 Configuration Settings
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: compliance-cis-scan
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: compliance.openshift.io/v1alpha1
+                kind: ScanSettingBinding
+                metadata:
+                  name: cis
+                  namespace: openshift-compliance
+                profiles:
+                  - name: ocp4-cis
+                    apiGroup: compliance.openshift.io/v1alpha1
+                    kind: Profile
+                  - name: ocp4-cis-node
+                    apiGroup: compliance.openshift.io/v1alpha1
+                    kind: Profile
+                settingsRef:
+                  name: default
+                  apiGroup: compliance.openshift.io/v1alpha1
+                  kind: ScanSetting
+          remediationAction: enforce
+          severity: high
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: compliance-suite-cis
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: compliance.openshift.io/v1alpha1
+                kind: ComplianceSuite
+                metadata:
+                  name: cis
+                  namespace: openshift-compliance
+                status:
+                  phase: DONE
+          remediationAction: enforce
+          severity: high
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: compliance-suite-cis-results
+        spec:
+          object-templates:
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: compliance.openshift.io/v1alpha1
+                kind: ComplianceCheckResult
+                metadata:
+                  namespace: openshift-compliance
+                  labels:
+                    compliance.openshift.io/check-status: FAIL
+                    compliance.openshift.io/suite: cis
+          remediationAction: enforce
+          severity: high
+  remediationAction: enforce

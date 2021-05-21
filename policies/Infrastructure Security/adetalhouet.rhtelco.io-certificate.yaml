@@ -1,0 +1,26 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: adetalhouet.rhtelco.io-certificate
+  namespace: policies
+  annotations:
+    policy.open-cluster-management.io/standards: Infrastructure security
+    policy.open-cluster-management.io/categories: Data security
+    policy.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: CertificatePolicy
+        metadata:
+          name: policy-certificatepolicy-cert-expiration
+        spec:
+          allowedSANPattern: '.adetalhouet.rhtelco.io|.openshift-ingress.'
+          minimumDuration: 300h
+          namespaceSelector:
+            include:
+              - '*'
+          remediationAction: inform
+          severity: low
+  remediationAction: inform

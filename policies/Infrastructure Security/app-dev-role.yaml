@@ -1,0 +1,72 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: app-dev-role
+  namespace: policies
+  annotations:
+    policy.open-cluster-management.io/standards: Infrastructure security
+    policy.open-cluster-management.io/categories: Access Control
+    policy.open-cluster-management.io/controls: AC-3 Access Enforcement
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-role-example
+      spec:
+        remediationAction: inform
+        severity: high
+        namespaceSelector:
+          exclude:
+            - kube-*
+          include:
+            - default
+        object-templates:
+          - complianceType: mustonlyhave
+            objectDefinition:
+              apiVersion: rbac.authorization.k8s.io/v1
+              kind: Role
+              metadata:
+                name: app-dev-role
+              rules:
+                - apiGroups:
+                    - extensions
+                    - apps
+                  resources:
+                    - deployments
+                  verbs:
+                    - get
+                    - list
+                    - watch
+                    - delete
+                    - patch
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-role
+  namespace: policies
+placementRef:
+  name: placement-policy-role
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-role
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-role
+  namespace: policies
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - {key: cloud, operator: In, values: ["Amazon"]}

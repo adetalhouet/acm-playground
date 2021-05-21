@@ -1,0 +1,78 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: image-manifest-vuln
+  namespace: policies
+  annotations:
+    policy.open-cluster-management.io/standards: Application security
+    policy.open-cluster-management.io/categories: Configuration Management
+    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability Scans
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-imagemanifestvulnpolicy-image-vulnerability-sub
+      spec:
+        remediationAction: inform # will be overridden by remediationAction in parent policy
+        severity: high
+        object-templates:
+          - complianceType: musthave
+            objectDefinition:
+              apiVersion: operators.coreos.com/v1alpha1
+              kind: Subscription
+              metadata:
+                name: container-security-operator
+                namespace: openshift-operators
+              spec:
+                channel: quay-v3.3
+                installPlanApproval: Automatic
+                name: container-security-operator
+                source: redhat-operators
+                sourceNamespace: openshift-marketplace
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-imagemanifestvulnpolicy-image-vulnerability
+      spec:
+        remediationAction: inform # will be overridden by remediationAction in parent policy
+        severity: high
+        namespaceSelector:
+          exclude: ["kube-*"]
+          include: ["*"]
+        object-templates:
+          - complianceType: mustnothave # mustnothave any ImageManifestVuln object
+            objectDefinition:
+              apiVersion: secscan.quay.redhat.com/v1alpha1
+              kind: ImageManifestVuln # checking for a kind
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-imagemanifestvulnpolicy
+  namespace: 
+placementRef:
+  name: placement-policy-imagemanifestvulnpolicy
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-imagemanifestvulnpolicy
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-imagemanifestvulnpolicy
+  namespace: 
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - {key: cloud, operator: In, values: ["Amazon"]}
