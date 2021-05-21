@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: gatekeeper-operator
-  namespace: 
+  namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: Infrastructure security
     policy.open-cluster-management.io/categories: Configuration Management
