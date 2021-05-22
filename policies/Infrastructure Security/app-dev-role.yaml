@@ -54,7 +54,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-role
+- name: app-dev-role
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---

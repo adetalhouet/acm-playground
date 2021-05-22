@@ -77,7 +77,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-comp-operator
+- name: compliance-operator
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
