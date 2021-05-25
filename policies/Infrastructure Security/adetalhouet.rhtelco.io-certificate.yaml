@@ -20,7 +20,7 @@ spec:
           minimumDuration: 300h
           namespaceSelector:
             include:
-              - '*'
+              - openshift-ingress
           remediationAction: inform
           severity: low
   remediationAction: inform
