@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: limit-memory-range
+  name: limit-memory-range-for-apps
   namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: Application security
@@ -21,7 +21,7 @@ spec:
         severity: medium
         namespaceSelector:
           exclude: ["kube-*"]
-          include: ["default"]
+          include: ["app-*"]
         object-templates:
           - complianceType: musthave
             objectDefinition:
@@ -47,7 +47,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: limit-memory-range
+- name: limit-memory-range-for-apps
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
