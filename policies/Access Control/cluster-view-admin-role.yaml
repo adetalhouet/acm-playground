@@ -32,16 +32,16 @@ spec:
 			        - list
 			        - watch
 			        - describe
-			      apiGroups:
+                  apiGroups:
 			        - '*'
-			      resources:
+                  resources:
 			        - '*'
 			    - verbs:
 			        - get
 			        - list
 			        - watch
 			        - describe
-			      nonResourceURLs:
+                  nonResourceURLs:
 			        - '*'
 ---
 apiVersion: policy.open-cluster-management.io/v1
