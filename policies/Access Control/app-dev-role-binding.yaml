@@ -7,7 +7,7 @@ metadata:
     policy.open-cluster-management.io/categories: Application Developer
     policy.open-cluster-management.io/controls: AC-3 Access Enforcement
 spec:
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   policy-templates:
     - objectDefinition:
