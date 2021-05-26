@@ -3,8 +3,8 @@ kind: Policy
 metadata:
   name: app-dev-role-binding
   annotations:
-    policy.open-cluster-management.io/standards: Infrastructure security
-    policy.open-cluster-management.io/categories: Access Control
+    policy.open-cluster-management.io/standards: Access Control
+    policy.open-cluster-management.io/categories: Application Developer
     policy.open-cluster-management.io/controls: AC-3 Access Enforcement
 spec:
   remediationAction: inform
@@ -16,25 +16,25 @@ spec:
         metadata:
           name: policy-rolebinding-example
         spec:
-          remediationAction: inform # the policy-template spec.remediationAction is overridden by the preceding parameter value for spec.remediationAction.
+          remediationAction: inform
           severity: high
           namespaceSelector:
             exclude: ["kube-*"]
-            include: ["default"]
+            include: ["app-*"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
-                kind: RoleBinding # role binding must exist
+                kind: RoleBinding
                 apiVersion: rbac.authorization.k8s.io/v1
                 metadata:
                   name: app-dev-rolebinding
                 subjects:
                 - kind: User
-                  name: adetalhouet # Name is case sensitive
+                  name: adetalhouet
                   apiGroup: rbac.authorization.k8s.io
                 roleRef:
-                  kind: Role #this must be Role or ClusterRole
-                  name: app-dev-role # this must match the name of the Role or ClusterRole you wish to bind to
+                  kind: Role 
+                  name: app-dev-role
                   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: policy.open-cluster-management.io/v1

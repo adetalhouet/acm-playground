@@ -4,8 +4,8 @@ metadata:
   name: limit-cluster-admin
   namespace: policies
   annotations:
-    policy.open-cluster-management.io/standards: Infrastructure security
-    policy.open-cluster-management.io/categories: Access Control
+    policy.open-cluster-management.io/standards: Access Control
+    policy.open-cluster-management.io/categories: Cluster Admin
     policy.open-cluster-management.io/controls: AC-3 Access Enforcement
 spec:
   remediationAction: inform

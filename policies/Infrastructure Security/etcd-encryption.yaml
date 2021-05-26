@@ -17,11 +17,8 @@ spec:
       metadata:
         name: policy-etcdencryption-etcd-encryption
       spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
+        remediationAction: inform
         severity: med
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
         object-templates:
           - complianceType: musthave
             objectDefinition:

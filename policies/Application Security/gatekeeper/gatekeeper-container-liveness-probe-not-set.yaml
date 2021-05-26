@@ -18,6 +18,8 @@ spec:
         spec:
           remediationAction: enforce
           severity: low
+          namespaceSelector:
+            exclude: ["kube-*","openshift-*"]
           object-templates:
             - complianceType: musthave
               objectDefinition:

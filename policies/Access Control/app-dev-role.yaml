@@ -4,8 +4,8 @@ metadata:
   name: app-dev-role
   namespace: policies
   annotations:
-    policy.open-cluster-management.io/standards: Infrastructure security
-    policy.open-cluster-management.io/categories: Access Control
+    policy.open-cluster-management.io/standards: Access Control
+    policy.open-cluster-management.io/categories: Application Developer
     policy.open-cluster-management.io/controls: AC-3 Access Enforcement
 spec:
   remediationAction: inform
@@ -23,7 +23,7 @@ spec:
           exclude:
             - kube-*
           include:
-            - default
+            - app-*
         object-templates:
           - complianceType: mustonlyhave
             objectDefinition:

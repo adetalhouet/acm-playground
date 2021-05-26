@@ -17,16 +17,16 @@ spec:
       metadata:
         name: policy-limit-range-container-mem-limit-range
       spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
+        remediationAction: inform
         severity: medium
         namespaceSelector:
-          exclude: ["kube-*"]
+          exclude: ["kube-*","openshift-*"]
           include: ["app-*"]
         object-templates:
           - complianceType: musthave
             objectDefinition:
               apiVersion: v1
-              kind: LimitRange # limit memory usage
+              kind: LimitRange 
               metadata:
                 name: container-mem-limit-range
               spec:

@@ -18,7 +18,7 @@ spec:
         metadata:
           name: policy-gatekeeper-config-exclude-namespaces
         spec:
-          remediationAction: enforce # will be overridden by remediationAction in parent policy
+          remediationAction: enforce
           severity: low
           object-templates:
             - complianceType: mustonlyhave

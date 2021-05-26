@@ -17,7 +17,7 @@ spec:
       metadata:
         name: policy-imagemanifestvulnpolicy-image-vulnerability-sub
       spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
+        remediationAction: inform
         severity: high
         object-templates:
           - complianceType: musthave
@@ -39,16 +39,16 @@ spec:
       metadata:
         name: policy-imagemanifestvulnpolicy-image-vulnerability
       spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
+        remediationAction: inform 
         severity: high
         namespaceSelector:
           exclude: ["kube-*"]
           include: ["*"]
         object-templates:
-          - complianceType: mustnothave # mustnothave any ImageManifestVuln object
+          - complianceType: mustnothave 
             objectDefinition:
               apiVersion: secscan.quay.redhat.com/v1alpha1
-              kind: ImageManifestVuln # checking for a kind
+              kind: ImageManifestVuln 
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
