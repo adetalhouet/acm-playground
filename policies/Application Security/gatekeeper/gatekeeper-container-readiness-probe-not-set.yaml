@@ -19,7 +19,7 @@ spec:
           remediationAction: enforce
           severity: low
           namespaceSelector:
-            exclude: ["kube-*","openshift-*","open-cluster-management-*"]
+            exclude: ["kube-*","openshift-*","open-cluster-management-*","submariner-*"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
