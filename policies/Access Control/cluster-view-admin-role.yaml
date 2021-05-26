@@ -26,23 +26,23 @@ spec:
               kind: ClusterRole
               metadata:
                 name: cluster-view-admin-role
-			  rules:
-			    - verbs:
-			        - get
-			        - list
-			        - watch
-			        - describe
+              rules:
+                - verbs:
+                    - get
+                    - list
+                    - watch
+                    - describe
                   apiGroups:
-			        - '*'
+                    - '*'
                   resources:
-			        - '*'
-			    - verbs:
-			        - get
-			        - list
-			        - watch
-			        - describe
+                    - '*'
+                - verbs:
+                    - get
+                    - list
+                    - watch
+                    - describe
                   nonResourceURLs:
-			        - '*'
+                    - '*'
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
