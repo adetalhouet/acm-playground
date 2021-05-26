@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: app-dev-role
+  name: cluster-view-admin-role
   namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: Access Control
@@ -15,53 +15,53 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: policy-role-example
+        name: policy-cluster-view-admin-role
       spec:
         remediationAction: inform
         severity: high
-        namespaceSelector:
-          exclude:
-            - kube-*
-          include:
-            - app-*
         object-templates:
           - complianceType: mustonlyhave
             objectDefinition:
               apiVersion: rbac.authorization.k8s.io/v1
-              kind: Role
+              kind: ClusterRole
               metadata:
-                name: app-dev-role
-              rules:
-                - apiGroups:
-                    - extensions
-                    - apps
-                  resources:
-                    - deployments
-                  verbs:
-                    - get
-                    - list
-                    - watch
-                    - delete
-                    - patch
+                name: cluster-view-admin-role
+			  rules:
+			    - verbs:
+			        - get
+			        - list
+			        - watch
+			        - describe
+			      apiGroups:
+			        - '*'
+			      resources:
+			        - '*'
+			    - verbs:
+			        - get
+			        - list
+			        - watch
+			        - describe
+			      nonResourceURLs:
+			        - '*'
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-role
+  name: cluster-view-admin-role
   namespace: policies
 placementRef:
-  name: placement-policy-role
+  name: placement-cluster-view-admin-role
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: app-dev-role
+- name: cluster-view-admin-role
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-role
+  name: placement-cluster-view-admin-role
   namespace: policies
 spec:
   clusterConditions:

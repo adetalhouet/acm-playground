@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: app-dev-role-binding
+  name: cluster-view-admin-role-binding
   annotations:
     policy.open-cluster-management.io/standards: Access Control
     policy.open-cluster-management.io/categories: Application Developer
@@ -14,46 +14,43 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: policy-rolebinding-example
+          name: policy-cluster-view-admin-role-binding
         spec:
           remediationAction: inform
           severity: high
-          namespaceSelector:
-            exclude: ["kube-*"]
-            include: ["app-*"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
-                kind: RoleBinding
+                kind: ClusterRoleBinding
                 apiVersion: rbac.authorization.k8s.io/v1
                 metadata:
-                  name: app-dev-rolebinding
+                  name: cluster-view-admin-role-binding
                 subjects:
-                - kind: User
-                  name: adetalhouet
+                - kind: Group
+                  name: cluster-view-admin
                   apiGroup: rbac.authorization.k8s.io
                 roleRef:
-                  kind: Role 
-                  name: app-dev-role
+                  kind: ClusterRole
+                  name: cluster-view-admin-role
                   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-rolebinding
+  name: binding-cluster-view-admin-role-binding
 placementRef:
-  name: placement-policy-rolebinding
+  name: placement-cluster-view-admin-role
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: app-dev-role-binding
+- name: cluster-view-admin-role-binding
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-rolebinding
+  name: placement-cluster-view-admin-role
 spec:
   clusterConditions:
   - status: "True"
