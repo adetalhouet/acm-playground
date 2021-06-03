@@ -1,3 +1,5 @@
+_Disclaimer_: the content in this repository is **not** Red Hat supported. This is provided for demo purposes only.
+
 ## Advanced Cluster Management playground
 
 #### Pre-requisite
