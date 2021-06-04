@@ -64,7 +64,7 @@ spec:
                     apiGroup: compliance.openshift.io/v1alpha1
                     kind: Profile
                 settingsRef:
-                  name: default
+                  name: default-submariner
                   apiGroup: compliance.openshift.io/v1alpha1
                   kind: ScanSetting
           remediationAction: enforce
