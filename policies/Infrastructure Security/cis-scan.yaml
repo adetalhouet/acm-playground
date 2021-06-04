@@ -14,6 +14,38 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
+          name: compliance-scan-settings
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: compliance.openshift.io/v1alpha1
+                kind: ScanSetting
+                metadata:
+                  name: default-submariner
+                  namespace: openshift-compliance
+                rawResultStorage:
+                  pvAccessModes:
+                  - ReadWriteOnce
+                  rotation: 3
+                  size: 1Gi
+                roles:
+                - worker
+                - master
+                scanTolerations:
+                - effect: NoSchedule
+                  key: node-role.kubernetes.io/master
+                  operator: Exists
+                - effect: NoSchedule
+                  key: node-role.submariner.io/gateway
+                  operator: Exists
+                schedule: 0 1 * * *
+          remediationAction: enforce
+          severity: high
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
           name: compliance-cis-scan
         spec:
           object-templates:
