@@ -16,7 +16,7 @@ spec:
         metadata:
           name: policy-gatekeeper-containerimagelatest
         spec:
-          remediationAction: enforce
+          remediationAction: inform
           severity: low
           namespaceSelector:
             exclude: ["kube-*","openshift-*", "titanic"]
