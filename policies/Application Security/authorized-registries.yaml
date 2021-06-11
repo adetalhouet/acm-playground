@@ -30,9 +30,13 @@ spec:
                 spec:
                   registrySources:
                     allowedRegistries:
-                      - registry.redhat.io
-                      - registry.access.redhat.com
-                      - quay.io
+                    - registry.redhat.io
+                    - registry.access.redhat.com
+                    - docker.io
+                    - quay.io
+                    - image-registry.openshift-image-registry.svc
+                    containerRuntimeSearchRegistries:
+                    - docker.io
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
