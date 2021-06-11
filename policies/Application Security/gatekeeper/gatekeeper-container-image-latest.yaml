@@ -19,7 +19,7 @@ spec:
           remediationAction: enforce
           severity: low
           namespaceSelector:
-            exclude: ["kube-*","openshift-*"]
+            exclude: ["kube-*","openshift-*", "titanic"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
