@@ -2,7 +2,7 @@
 apiVersion: tower.ansible.com/v1alpha1
 kind: AnsibleJob
 metadata:
-  name: 02-send-slack-start
+  name: 01-send-slack-end
   namespace: pacman-app
   labels:
     app.kubernetes.io/name: pacman
