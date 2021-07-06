@@ -1,0 +1,14 @@
+---
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  name: 02-send-slack-start
+  namespace: pacman-app
+  labels:
+    app.kubernetes.io/name: pacman
+spec:
+  tower_auth_secret: toweraccess
+  extra_vars:
+    message: "Deployment ended on "
+  job_template_name: send-slack-message
+  tower_auth_secret: toweraccess
