@@ -20,7 +20,7 @@ Apply the channel to leverage this repository as a Git source
 1. It is required to have Ansbile Tower installed. See [here](https://releases.ansible.com/ansible-tower/setup_openshift/) on how to install Tower on OpenShift
 2. Update `apps/00-tower-setup/tower_cli.cfg` according to your environment
 3. Create a [ServiceNow developer account](https://developer.servicenow.com/dev.do) and update `apps/00-tower-setup/group_var/credentials.yaml` accordingly
-4. Run `apps/00-tower-setup/ansible-playbook tower-setup.yml` to create the various elements required in Tower.
+4. Run `ansible-playbook apps/00-tower-setup/tower-setup.yml` to create the various elements required in Tower.
 
 ###### Install the app
 Create a namespace to host the the pacman application
