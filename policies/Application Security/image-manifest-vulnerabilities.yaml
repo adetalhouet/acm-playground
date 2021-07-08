@@ -8,7 +8,7 @@ metadata:
     policy.open-cluster-management.io/categories: Configuration Management
     policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability Scans
 spec:
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   policy-templates:
   - objectDefinition:
