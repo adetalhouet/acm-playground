@@ -27,6 +27,8 @@ Create a namespace to host the the pacman application
 
 	oc create ns pacman-app
 
+	kubeseal --cert ~/.bitnami/tls.crt --format yaml < apps/pacman/tower-secret.yaml > apps/pacman/sealed-tower-secret.yaml
+
 Apply the subscription to register for the `pacman-app`
 
 	oc apply -f app/pacman-app.yaml
