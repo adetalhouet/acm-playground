@@ -23,15 +23,13 @@ Apply the channel to leverage this repository as a Git source
 4. Run `ansible-playbook apps/00-tower-setup/tower-setup.yml` to create the various elements required in Tower.
 
 ###### Install the app
-Create a namespace to host the the pacman application
-
-	oc create ns pacman-app
+Create your tower secret file `apps/pacman/tower-secret.yaml` based on the example, and seal the secret. If you don't have a way to seal the secret, then apply it manually, or [deploy sealed secret](https://github.com/adetalhouet/ocp-gitops/tree/main/apps/02-sealed-secrets)
 
 	kubeseal --cert ~/.bitnami/tls.crt --format yaml < apps/pacman/tower-secret.yaml > apps/pacman/sealed-tower-secret.yaml
 
 Apply the subscription to register for the `pacman-app`
 
-	oc apply -f app/pacman-app.yaml
+	oc apply -f apps/pacman-app.yaml
 
 #### Policies
 
