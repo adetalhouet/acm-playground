@@ -4,8 +4,7 @@ metadata:
   annotations:
     apps.open-cluster-management.io/git-branch: main
     apps.open-cluster-management.io/git-path: /policies
-    apps.open-cluster-management.io/reconcile-rate: high
-    apps.open-cluster-management.io/reconcile-option: replace
+    apps.open-cluster-management.io/webhook-enabled: "true"
   name: policies-subscription
   namespace: policies
 spec:
