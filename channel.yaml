@@ -5,7 +5,7 @@ metadata:
   namespace: acm-playground
   annotations:
     apps.open-cluster-management.io/reconcile-rate: high
-    # apps.open-cluster-management.io/webhook-enabled: "true"
+    apps.open-cluster-management.io/webhook-enabled: "true"
 spec:
     type: Git
     pathname: https://github.com/adetalhouet/acm-playground.git
