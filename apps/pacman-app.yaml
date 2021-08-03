@@ -50,6 +50,5 @@ spec:
   - status: "True"
     type: ManagedClusterConditionAvailable
   clusterSelector:
-    clusterReplicas: 2
     matchLabels:
       environment: dev
