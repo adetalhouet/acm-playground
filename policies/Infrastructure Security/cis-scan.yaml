@@ -132,4 +132,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: cloud, operator: In, values: ["Amazon"]}
+      - {key: governanceEnabled, operator: In, values: ["True"]}
