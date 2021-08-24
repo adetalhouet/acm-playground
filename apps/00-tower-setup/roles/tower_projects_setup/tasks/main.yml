@@ -72,3 +72,11 @@
     project: "send-slack-message"
     playbook: "slack_send_message.yml"
     ask_variables_on_launch: true
+
+- name: "Add Job Template: \"send-slack-message-cluster-deploy\""
+  awx.awx.tower_job_template:
+    name: "send-slack-message-cluster-deploy"
+    inventory: "Demo Inventory"
+    project: "send-slack-message"
+    playbook: "slack_send_message-cluster-deployment.yml"
+    ask_variables_on_launch: true
