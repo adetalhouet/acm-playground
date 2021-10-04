@@ -6,4 +6,4 @@ commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 
 resources:
-- pacman-app
+- pacman-app.yaml
