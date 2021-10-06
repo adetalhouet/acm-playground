@@ -3,7 +3,7 @@
 # kind: AnsibleJob
 # metadata:
 #   name: 01-snow-create-change-record
-#   namespace: pacman-app
+#   namespace: ansible-automation-platform
 #   labels:
 #     app.kubernetes.io/name: pacman
 # spec:
