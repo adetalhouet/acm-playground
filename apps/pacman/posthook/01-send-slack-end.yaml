@@ -11,4 +11,3 @@ spec:
   extra_vars:
     message: "Pacman deployment ended on "
   job_template_name: send-slack-message
-  tower_auth_secret: toweraccess
