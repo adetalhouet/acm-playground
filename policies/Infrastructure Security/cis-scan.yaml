@@ -29,7 +29,7 @@ spec:
                   - ReadWriteOnce
                   rotation: 3
                   size: 1Gi
-                  storageClassName: ocs-storagecluster-ceph-rbd
+                  storageClassName: ocs-storagecluster-cephfs
                 roles:
                 - worker
                 - master
