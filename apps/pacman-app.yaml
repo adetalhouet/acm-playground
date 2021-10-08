@@ -35,7 +35,7 @@ metadata:
 spec:
   channel: acm-playground/acm-playground-channel
   hooksecretref:
-    name: toweraccess
+    name: tower
   placement:
     placementRef:
       kind: PlacementRule

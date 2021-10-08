@@ -7,7 +7,6 @@ metadata:
   labels:
     app.kubernetes.io/name: pacman
 spec:
-  tower_auth_secret: toweraccess
   extra_vars:
     message: "Pacman deployment started on "
   job_template_name: send-slack-message
