@@ -10,3 +10,4 @@ spec:
   extra_vars:
     message: "Pacman deployment started on "
   job_template_name: send-slack-message
+  tower_auth_secret: toweraccess
