@@ -16,7 +16,7 @@ spec:
         metadata:
           name: policy-certificatepolicy-cert-expiration
         spec:
-          allowedSANPattern: '.adetalhouet.rhtelco.io|.openshift-ingress.'
+          allowedSANPattern: '.sandbox1091.opentlc.com|.openshift-ingress.'
           minimumDuration: 300h
           namespaceSelector:
             include:
