@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: redhat-acs-installed-k8s
-  namespace: openshift-config
+  namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
     policy.open-cluster-management.io/categories: PR.DS Data Security
@@ -271,7 +271,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: acs-remote-clusters
-  namespace: pacman-app
+  namespace: policies
 spec:
   clusterConditions:
   - status: "True"

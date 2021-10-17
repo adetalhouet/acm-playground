@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: adetalhouet.rhtelco.io-certificate
+  name: sandbox1091.opentlc.com-certificate
   namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: Infrastructure security
@@ -35,7 +35,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: adetalhouet.rhtelco.io-certificate
+- name: sandbox1091.opentlc.com-certificate
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
