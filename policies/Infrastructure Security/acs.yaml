@@ -278,4 +278,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchLabels:
-      acs-enabled: true
+      acs-enabled: "True"
