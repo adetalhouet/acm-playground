@@ -76,19 +76,32 @@ spec:
                     taintToleration: TolerateTaints
                   #imagePullSecrets:
                   #  - name: openshift-pull-secret
-
-
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-acs-all-clusters
+  name: binding-acs-non-openshift
   namespace: policies
 placementRef:
-  name: all-openshift
+  name: acs-remote-clusters
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
   - name: redhat-acs-installed
     kind: Policy
     apiGroup: policy.open-cluster-management.io
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: acs-remote-clusters
+  namespace: policies
+placementRef:
+  name: acs-remote-clusters
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+  - name: redhat-acs-installed
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
+    
