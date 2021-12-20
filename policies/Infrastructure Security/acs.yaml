@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: redhat-acs-installed-k8s
+  name: redhat-acs-installed
   namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -12,90 +12,10 @@ spec:
   disabled: false
   policy-templates:
     - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: k8s-pull-secrets-namespaces
-      spec:
-        remediationAction: enforce
-        severity: med
-        namespaceSelector:
-          exclude:
-            - kube-*
-          include:
-            - default
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: v1
-              kind: Namespace
-              metadata:
-                name: openshift-operators
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: v1
-              kind: Namespace
-              metadata:
-                name: openshift-marketplace
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: v1
-              kind: Namespace
-              metadata:
-                name: stackrox
-    - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: k8s-pull-secrets
-        spec:
-          remediationAction: enforce
-          severity: high
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                metadata:
-                  name: openshift-pull-secret
-                  namespace: openshift-operators
-                  annotations:
-                    apps.open-cluster-management.io/deployables: "secret"
-                data:
-                  .dockerconfigjson: |
-                    {{hub fromSecret "openshift-config" "pull-secret" ".dockerconfigjson" hub}}
-                type: kubernetes.io/dockerconfigjson
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                metadata:
-                  name: openshift-pull-secret
-                  namespace: openshift-marketplace
-                  annotations:
-                    apps.open-cluster-management.io/deployables: "secret"
-                data:
-                  .dockerconfigjson: | 
-                    {{hub fromSecret "openshift-config" "pull-secret" ".dockerconfigjson" hub}}
-                type: kubernetes.io/dockerconfigjson
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                metadata:
-                  name: openshift-pull-secret
-                  namespace: stackrox
-                  annotations:
-                    apps.open-cluster-management.io/deployables: "secret"
-                data:
-                  .dockerconfigjson: | 
-                    {{hub fromSecret "openshift-config" "pull-secret" ".dockerconfigjson" hub}}
-                type: kubernetes.io/dockerconfigjson
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
-          name: redhat-acs-installed-k8s
+          name: redhat-acs-installed
         spec:
           remediationAction: enforce
           severity: med
@@ -107,6 +27,7 @@ spec:
           object-templates:
             - complianceType: musthave
               objectDefinition:
+                # This is an auto-generated file. DO NOT EDIT
                 apiVersion: operators.coreos.com/v1alpha1
                 kind: Subscription
                 metadata:
@@ -120,109 +41,12 @@ spec:
                   name: rhacs-operator
                   source: redhat-operators
                   sourceNamespace: openshift-marketplace
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                imagePullSecrets:
-                - name: openshift-pull-secret
-                kind: ServiceAccount
-                metadata:
-                  name: rhacs-operator-controller-manager
-                  namespace: openshift-operators
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: apps/v1
-                kind: Deployment
-                metadata:
-                  name: rhacs-operator-controller-manager
-                  namespace: openshift-operators
-                spec:
-                  template:
-                    metadata:
-                      annotations:
-                        deployed-at: resync
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                imagePullSecrets:
-                - name: openshift-pull-secret
-                kind: ServiceAccount
-                metadata:
-                  name: rhacs-operator-controller-manager
-                  namespace: openshift-operators
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                imagePullSecrets:
-                - name: openshift-pull-secret
-                kind: ServiceAccount
-                metadata:
-                  name: rhacs-operator-controller-manager
-                  namespace: openshift-operators
+                  startingCSV: rhacs-operator.v3.66.1
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: redhat-acs-secrets-k8s
-        spec:
-          remediationAction: enforce
-          severity: high
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Namespace
-                metadata:
-                  name: stackrox
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                metadata:
-                  namespace: stackrox
-                  name: collector-tls
-                data:
-                  ca.pem: |
-                    {{hub fromSecret "stackrox" "collector-tls" "ca.pem" hub}}
-                  collector-cert.pem: |
-                    {{hub fromSecret "stackrox" "collector-tls" "collector-cert.pem" hub}}
-                  collector-key.pem: |
-                    {{hub fromSecret "stackrox" "collector-tls" "collector-key.pem" hub}}
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                metadata:
-                  namespace: stackrox
-                  name: sensor-tls
-                data:
-                  acs-host: |
-                    {{hub fromSecret "stackrox" "sensor-tls" "acs-host" hub}}
-                  ca.pem: |
-                    {{hub fromSecret "stackrox" "sensor-tls" "ca.pem" hub}}
-                  sensor-cert.pem: |
-                    {{hub fromSecret "stackrox" "sensor-tls" "sensor-cert.pem" hub}}
-                  sensor-key.pem: |
-                    {{hub fromSecret "stackrox" "sensor-tls" "sensor-key.pem" hub}}
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                metadata:
-                  namespace: stackrox
-                  name: admission-control-tls
-                data:
-                  ca.pem: |
-                    {{hub fromSecret "stackrox" "admission-control-tls" "ca.pem" hub}}
-                  admission-control-cert.pem: |
-                    {{hub fromSecret "stackrox" "admission-control-tls" "admission-control-cert.pem" hub}}
-                  admission-control-key.pem: |
-                    {{hub fromSecret "stackrox" "admission-control-tls" "admission-control-key.pem" hub}}
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
-          name: managed-cluster-security-endpoints-k8s
+          name: managed-cluster-security-endpoints
         spec:
           remediationAction: enforce
           severity: high
@@ -250,32 +74,21 @@ spec:
                       collection: KernelModule
                       imageFlavor: Regular
                     taintToleration: TolerateTaints
-                  imagePullSecrets:
-                    - name: openshift-pull-secret
+                  #imagePullSecrets:
+                  #  - name: openshift-pull-secret
+
+
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-acs-non-openshift
+  name: binding-acs-all-clusters
   namespace: policies
 placementRef:
-  name: acs-remote-clusters
+  name: all-openshift
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-  - name: redhat-acs-installed-k8s
+  - name: redhat-acs-installed
     kind: Policy
     apiGroup: policy.open-cluster-management.io
----
-apiVersion: apps.open-cluster-management.io/v1
-kind: PlacementRule
-metadata:
-  name: acs-remote-clusters
-  namespace: policies
-spec:
-  clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
-  clusterSelector:
-    matchLabels:
-      acs-enabled: "True"
