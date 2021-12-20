@@ -80,7 +80,7 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-acs-non-openshift
+  name: acs-remote-clusters
   namespace: policies
 placementRef:
   name: acs-remote-clusters
@@ -91,17 +91,15 @@ subjects:
     kind: Policy
     apiGroup: policy.open-cluster-management.io
 ---
-apiVersion: policy.open-cluster-management.io/v1
-kind: PlacementBinding
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
 metadata:
   name: acs-remote-clusters
   namespace: policies
-placementRef:
-  name: acs-remote-clusters
-  kind: PlacementRule
-  apiGroup: apps.open-cluster-management.io
-subjects:
-  - name: redhat-acs-installed
-    kind: Policy
-    apiGroup: policy.open-cluster-management.io
-    
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchLabels:
+      acs-enabled: "True"
