@@ -27,7 +27,6 @@ spec:
           object-templates:
             - complianceType: musthave
               objectDefinition:
-                # This is an auto-generated file. DO NOT EDIT
                 apiVersion: operators.coreos.com/v1alpha1
                 kind: Subscription
                 metadata:
@@ -41,7 +40,6 @@ spec:
                   name: rhacs-operator
                   source: redhat-operators
                   sourceNamespace: openshift-marketplace
-                  startingCSV: rhacs-operator.v3.66.1
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -74,13 +72,11 @@ spec:
                       collection: KernelModule
                       imageFlavor: Regular
                     taintToleration: TolerateTaints
-                  #imagePullSecrets:
-                  #  - name: openshift-pull-secret
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: acs-remote-clusters
+  name: acs-remote-clusters-binding
   namespace: policies
 placementRef:
   name: acs-remote-clusters
