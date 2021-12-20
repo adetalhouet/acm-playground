@@ -2,6 +2,9 @@ _Disclaimer_: the content in this repository is **not** Red Hat supported. This 
 
 ## Advanced Cluster Management playground
 
+
+TBD  service-account awx-resource-operator-controller-manager
+
 #### Pre-requisite
 
 Create a namespace to host the acm objects (Channel)

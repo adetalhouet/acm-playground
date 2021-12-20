@@ -257,7 +257,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-acs-non-openshift
-  namespace: openshift-config
+  namespace: policies
 placementRef:
   name: acs-remote-clusters
   kind: PlacementRule
