@@ -11,6 +11,8 @@ kind: Channel
 metadata:
   name: acm-playground-channel
   namespace: acm-playground
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: High
 spec:
     type: Git
     pathname: https://github.com/adetalhouet/acm-playground.git
