@@ -107,7 +107,6 @@ spec:
                     compliance.openshift.io/suite: cis
           remediationAction: enforce
           severity: high
-  remediationAction: enforce
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
