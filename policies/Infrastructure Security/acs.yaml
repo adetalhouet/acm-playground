@@ -4,8 +4,8 @@ metadata:
   name: redhat-acs-installed
   namespace: policies
   annotations:
-    policy.open-cluster-management.io/standards: NIST-CSF
-    policy.open-cluster-management.io/categories: PR.DS Data Security
+    policy.open-cluster-management.io/standards: Infrastructure security
+    policy.open-cluster-management.io/categories: Data security
     policy.open-cluster-management.io/controls: PR.DS-1 Data-at-rest
 spec:
   remediationAction: enforce
