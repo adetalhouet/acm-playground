@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: sandbox1091.opentlc.com-certificate
+  name: sandbox1829.opentlc.com-certificate
   namespace: policies
   annotations:
     policy.open-cluster-management.io/standards: Infrastructure security
@@ -16,7 +16,7 @@ spec:
         metadata:
           name: policy-certificatepolicy-cert-expiration
         spec:
-          allowedSANPattern: '.sandbox1091.opentlc.com|.openshift-ingress.'
+          allowedSANPattern: '.sandbox1829.opentlc.com|.openshift-ingress.'
           minimumDuration: 300h
           namespaceSelector:
             include:
@@ -35,7 +35,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: sandbox1091.opentlc.com-certificate
+- name: sandbox1829.opentlc.com-certificate
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
