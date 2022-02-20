@@ -8,7 +8,7 @@ metadata:
     policy.open-cluster-management.io/categories: Configuration Management
     policy.open-cluster-management.io/controls: CM-6 Configuration Settings
 spec:
-  remediationAction: enforce
+  remediationAction: inform
   disabled: false
   policy-templates:
   - objectDefinition:
