@@ -68,7 +68,7 @@ spec:
                   clusterName: '{{ fromSecret "open-cluster-management-agent" "hub-kubeconfig-secret" "cluster-name" | base64dec }}'
                   auditLogs:
                     collection: Auto
-                  centralEndpoint: '{{hub ( index ( lookup "route.openshift.io/v1" "Route" "stackrox" "central").spec "host" ) hub}}'
+                  centralEndpoint: 'https://{{hub ( index ( lookup "route.openshift.io/v1" "Route" "stackrox" "central").spec "host" ) hub}}:443'
                   admissionControl:
                     listenOnCreates: false
                     listenOnEvents: true
