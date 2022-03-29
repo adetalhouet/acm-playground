@@ -15,7 +15,22 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: redhat-acs-installed
+          name: stackrox-namespace
+        spec:
+          remediationAction: enforce
+          severity: med
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Namespace
+                metadata:
+                  name: stackrox
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: acs-operator
         spec:
           remediationAction: enforce
           severity: med
