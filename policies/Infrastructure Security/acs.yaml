@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: redhat-acs-installed
-  namespace: policies
+  namespace: stackrox
   annotations:
     policy.open-cluster-management.io/standards: Infrastructure security
     policy.open-cluster-management.io/categories: Data security
@@ -50,11 +50,10 @@ spec:
                   namespace: stackrox
                   name: stackrox-secured-cluster-services
                 spec:
-                  clusterName: |
-                    {{ fromSecret "open-cluster-management-agent" "hub-kubeconfig-secret" "cluster-name" | base64dec }}
+                  clusterName: '{{ fromSecret "open-cluster-management-agent" "hub-kubeconfig-secret" "cluster-name" | base64dec }}'
                   auditLogs:
                     collection: Auto
-                  centralEndpoint: '{{hub ( lookup "route.openshift.io/v1" "Route" "stackrox" "central").spec.host hub}}'
+                  centralEndpoint: '{{hub (lookup "route.openshift.io/v1" "Route" "stackrox" "central").spec.host hub}}'
                   admissionControl:
                     listenOnCreates: false
                     listenOnEvents: true
@@ -132,7 +131,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: acs-remote-clusters-binding
-  namespace: policies
+  namespace: stackrox
 placementRef:
   name: acs-remote-clusters
   kind: PlacementRule
@@ -146,7 +145,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: acs-remote-clusters
-  namespace: policies
+  namespace: stackrox
 spec:
   clusterConditions:
   - status: "True"
