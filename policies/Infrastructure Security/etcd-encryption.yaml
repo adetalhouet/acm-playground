@@ -18,7 +18,7 @@ spec:
         name: policy-etcdencryption-etcd-encryption
       spec:
         remediationAction: inform
-        severity: med
+        severity: medium
         object-templates:
           - complianceType: musthave
             objectDefinition:
