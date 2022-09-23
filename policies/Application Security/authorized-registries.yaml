@@ -36,6 +36,7 @@ spec:
                     - docker.io
                     - quay.io
                     - gcr.io
+                    - ghcr.io
                     - image-registry.openshift-image-registry.svc
                     containerRuntimeSearchRegistries:
                     - docker.io
