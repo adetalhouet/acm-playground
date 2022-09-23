@@ -35,6 +35,7 @@ spec:
                     - registry.access.redhat.com
                     - docker.io
                     - quay.io
+                    - gcr.io
                     - image-registry.openshift-image-registry.svc
                     containerRuntimeSearchRegistries:
                     - docker.io
