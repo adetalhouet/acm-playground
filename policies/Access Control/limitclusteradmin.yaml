@@ -18,6 +18,7 @@ spec:
         name: policy-limitclusteradmin-example
       spec:
         severity: medium
+        pruneObjectBehavior: DeleteIfCreated
         namespaceSelector:
           include:
             - '*'

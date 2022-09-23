@@ -18,6 +18,7 @@ spec:
         name: policy-namespace-policies-ns
       spec:
         remediationAction: inform
+        pruneObjectBehavior: DeleteIfCreated
         severity: high
         object-templates:
           - complianceType: musthave

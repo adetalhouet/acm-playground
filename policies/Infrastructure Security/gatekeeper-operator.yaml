@@ -8,7 +8,7 @@ metadata:
     policy.open-cluster-management.io/categories: Configuration Management
     policy.open-cluster-management.io/controls: CM-6 Configuration Settings
 spec:
-  remediationAction: enforce
+  remediationAction: inform
   disabled: false
   policy-templates:
   - objectDefinition:
@@ -19,6 +19,7 @@ spec:
       spec:
         remediationAction: enforce
         severity: high
+        pruneObjectBehavior: DeleteIfCreated
         object-templates:
           - complianceType: musthave
             objectDefinition:
@@ -40,6 +41,7 @@ spec:
         name: gatekeeper
       spec:
         remediationAction: inform
+        pruneObjectBehavior: DeleteIfCreated
         severity: high
         object-templates:
           - complianceType: musthave

@@ -20,6 +20,7 @@ spec:
         spec:
           remediationAction: enforce
           severity: low
+          pruneObjectBehavior: DeleteIfCreated
           object-templates:
             - complianceType: mustonlyhave
               objectDefinition:

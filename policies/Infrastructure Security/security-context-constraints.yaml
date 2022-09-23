@@ -18,6 +18,7 @@ spec:
         spec:
           remediationAction: inform
           severity: high
+          pruneObjectBehavior: DeleteIfCreated
           namespaceSelector:
             exclude: ["kube-*","openshift-*"]
           object-templates:

@@ -44,6 +44,7 @@ spec:
                 schedule: 0 1 * * *
           remediationAction: enforce
           severity: high
+          pruneObjectBehavior: DeleteIfCreated
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -71,6 +72,7 @@ spec:
                   kind: ScanSetting
           remediationAction: enforce
           severity: high
+          pruneObjectBehavior: DeleteIfCreated
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -89,6 +91,7 @@ spec:
                   phase: DONE
           remediationAction: enforce
           severity: high
+          pruneObjectBehavior: DeleteIfCreated
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -107,6 +110,7 @@ spec:
                     compliance.openshift.io/suite: cis
           remediationAction: enforce
           severity: high
+          pruneObjectBehavior: DeleteIfCreated
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
