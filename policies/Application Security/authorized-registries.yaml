@@ -38,6 +38,7 @@ spec:
                     - gcr.io
                     - ghcr.io
                     - image-registry.openshift-image-registry.svc
+                    - k8s.gcr.io
                     containerRuntimeSearchRegistries:
                     - docker.io
 ---
