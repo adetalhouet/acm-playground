@@ -18,7 +18,7 @@ spec:
           name: stackrox-namespace
         spec:
           remediationAction: enforce
-          severity: med
+          severity: medium
           pruneObjectBehavior: DeleteIfCreated
           object-templates:
             - complianceType: musthave
@@ -34,7 +34,7 @@ spec:
           name: acs-operator
         spec:
           remediationAction: enforce
-          severity: med
+          severity: medium
           pruneObjectBehavior: DeleteIfCreated
           object-templates:
             - complianceType: musthave
